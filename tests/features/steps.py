@@ -1,15 +1,23 @@
 from lettuce import *
 from selenium import webdriver
+from nose.tools import assert_equals
 
-browser = webdriver.Firefox()
+@before.all
+def set_browser():
+	world.browser = webdriver.Firefox()
+	print "SET BROWSER"
 
-@step(u'Given I visit the index page')
-def given_i_visit_the_index_page(step):
-    browser.get("localhost:8080")
+@after.all
+def kill_browser(total):
+	world.browser.close()
 
-@step(u'Then I see "([^"]*)"')
-def then_i_see_group1(step, group1):
-    assert False, 'This step must be implemented'
-    # assert "TwitList" == browser.find_element_by_name('h2')
+@step(u'Given I access the url "([^"]*)"')
+def access_url(step, directory):
+	url = "localhost:8080" + directory
+	world.browser.get(url)
 
-browser.close()
+@step(u'Then I see the header "([^"]*)"')
+def see_header(step, text):
+	assert False, 'This step must be implemented'
+	# header = world.dom.cssselect('h1')[0]
+	# assert header.text == text
