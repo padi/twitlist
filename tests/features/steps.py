@@ -1,6 +1,7 @@
 from lettuce import *
 from splinter.browser import Browser
 from nose.tools import assert_equals
+import re
 
 @before.all
 def set_browser():
@@ -22,4 +23,4 @@ def should_see_header(step, text):
 @step(u'(?:Then|And) I should see the Twitter sign in button')
 def should_see_twitter_sign_in(step):
     element = world.browser.find_by_id('sign-in-button').first
-    assert element['href'] == '/oauth/twitter/login'
+    assert re.search('/oauth/twitter/login', element['href']) , element['href'] + " did not match with '/oauth/twitter/login'"
