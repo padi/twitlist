@@ -15,6 +15,11 @@ def access_url(step, directory):
   url = "localhost:8080" + directory
   world.browser.visit(url)
 
-@step(u'Then I see the header "([^"]*)"')
-def see_header(step, text):
+@step(u'Then I should see the header "([^"]*)"')
+def should_see_header(step, text):
   assert world.browser.is_text_present('TwitList'), "header 'Twitlist' not found"
+
+@step(u'(?:Then|And) I should see the Twitter sign in button')
+def should_see_twitter_sign_in(step):
+    element = world.browser.find_by_id('sign-in-button').first
+    assert element['href'] == '/oauth/twitter/login'

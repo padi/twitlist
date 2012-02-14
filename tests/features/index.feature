@@ -6,4 +6,4 @@ Feature: Index Page
   Scenario: Checking the index page when user is not signed in
     Given I access the url "/"
     Then I should see the header "TwitList"
-    And I should see the image linking to Twitter sign in
+    And I should see the Twitter sign in button
