@@ -1,0 +1,15 @@
+TwitList: Twitter List Manager
+
+Dependencies:
+
+1. pip install - E twitlist-environment -r requirements.txt
+2. Set up Chrome Webdriver (http://splinter.cobrateam.info/docs/drivers/chrome.html)
+
+A few warnings:
+1. Mouse automations via splinter currently works only in Chrome (http://splinter.cobrateam.info/docs/mouse-interaction.html)
+
+Run Lettuce Tests:
+1. Open a terminal and type:
+    python main.py
+2. Open another terminal and type:
+    lettuce tests/
