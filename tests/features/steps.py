@@ -5,7 +5,7 @@ import re
 
 @before.all
 def set_browser():
-  world.browser = Browser()
+  world.browser = Browser('chrome')
 
 @after.all
 def kill_browser(total):
@@ -24,3 +24,7 @@ def should_see_header(step, text):
 def should_see_twitter_sign_in(step):
     element = world.browser.find_by_id('sign-in-button').first
     assert re.search('/oauth/twitter/login', element['href']) , element['href'] + " did not match with '/oauth/twitter/login'"
+
+@step(u'When I click the Twitter sign in button')
+def click_twitter_sign_in_button(step):
+    world.browser.find_by_css('#sign-in-button').click()
